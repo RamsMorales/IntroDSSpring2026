@@ -151,4 +151,43 @@ fig = px.imshow(
     text_auto = True,
     title="Correlation Matrix Heatmap"
 )
-fig.show()
+#fig.show()
+
+## Box plot for the calories 
+fig2 = px.box(menu_dat,x="Caffeine (mg)")
+#fig2.show()
+
+beverage_view = menu_dat.groupby("Beverage_category")
+print(beverage_view["Caffeine (mg)"].mean())
+
+#__________________________________________________________________________________
+#                        Case Study on Handling Missing Values
+#__________________________________________________________________________________
+missing_drinks = menu_dat[menu_dat["Caffeine (mg)"].isna() == True]
+print(missing_drinks)
+
+## Strategy 1 - Dropping the values
+dropped_missing = menu_dat.dropna(subset=["Caffeine (mg)"])
+print(f"Original dataset shape: {menu_dat.shape}. New data shape: {dropped_missing.shape}")
+# Pros: preserves data integrity. Cons: 
+
+## Strategy 2 - Filling with average of caffiene
+# Pro: preserves the overall distribution Cons: Per Category comparison is altered since it is based on fake data
+filled_dat = menu_dat.copy()
+mean_caffiene = menu_dat["Caffeine (mg)"].mean()
+filled_dat["Caffeine (mg)"].fillna(mean_caffiene,inplace=True)
+print(f"Original dataset shape: {menu_dat.shape}. New data shape: {filled_dat.shape}")
+
+## Strategy 3 - Analyze what the categories mean and see if that data makes sense (fill with 0s) LEAST FAVORABLE
+fill_zero = menu_dat.copy()
+fill_zero["Caffeine (mg)"].fillna(0,inplace=True)
+print(f"Original dataset shape: {menu_dat.shape}. New data shape: {fill_zero.shape}")
+
+# Strategy 4 - do a per category comparison and fill with mean for that category 
+## these are especially useful for atributes with high variance per category
+## Pro it is a closer estimate ## con: still fake data
+
+category_df = menu_dat.copy()
+category_df["Caffeine (mg)"] = category_df.groupby("Beverage_category")["Caffeine (mg)"].transform(lambda x: x.fillna(x.mean()))
+print(menu_dat.describe())
+print(category_df.describe())

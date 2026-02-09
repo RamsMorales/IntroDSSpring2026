@@ -43,6 +43,9 @@ with tab1:
     st.divider()
     st.subheader("Summary Statistics")
     st.dataframe(df.describe())
+#--------------------------------------------------------------------------------------------------------------
+#                                               tab 2: Charts
+#--------------------------------------------------------------------------------------------------------------
 
 with tab2:
     st.subheader("Charts")
@@ -83,6 +86,9 @@ with tab2:
         fig4 = px.scatter_3d(df,x="Longitude",y="Latitude",z="Total Water Column (m)",color="pH",title="pH Along Robot Trajectory")
         fig4.update_scenes(zaxis_autorange="reversed")
         st.plotly_chart(fig4)
+#--------------------------------------------------------------------------------------------------------------
+#                                               tab 3: Maps
+#--------------------------------------------------------------------------------------------------------------
 with tab3:
     st.subheader("Maps")
     fig5 = px.scatter_mapbox(df,lon="Longitude",lat="Latitude",color="Temperature (c)",mapbox_style="open-street-map",zoom=17,hover_data=df,color_continuous_scale=px.colors.diverging.Picnic)

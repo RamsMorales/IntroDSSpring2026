@@ -127,5 +127,5 @@ print(piv_edu.loc[["Spain","Portugal"],[2006,2011]])
 # example case of prior methods applicable to this object
 
 piv_edu = piv_edu.rename(index={"Germany (until 1990 former territory of the FRG)":"Germany"})
-
+# renaming seems like a frequent operation given that it was tested in the interview.
 print(piv_edu)
