@@ -33,6 +33,7 @@ matplotlib==3.10.8
 matplotlib-inline==0.2.1
 narwhals==2.15.0
 nest-asyncio==1.6.0
+nltk==3.9.3
 numpy==2.4.1
 packaging==25.0
 pandas==2.3.3
@@ -54,6 +55,7 @@ python-dateutil==2.9.0.post0
 pytz==2025.2
 pyzmq==27.1.0
 referencing==0.37.0
+regex==2026.2.28
 requests==2.32.5
 rpds-py==0.30.0
 scikit-learn==1.8.0
@@ -66,6 +68,7 @@ tenacity==9.1.2
 threadpoolctl==3.6.0
 toml==0.10.2
 tornado==6.5.4
+tqdm==4.67.3
 traitlets==5.14.3
 typing_extensions==4.15.0
 tzdata==2025.3
